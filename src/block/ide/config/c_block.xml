@@ -1,6 +1,6 @@
-<!DOCTYPE RootElement SYSTEM "RootElement.dtd">
-<BLOCKS>
-	<BLOCK>
+<?xml version="1.0"?>
+<BLOCKS name="C_IDE">
+	<BLOCK name="START">
 		<!-- ID -->
 			<ID>1</ID>
 		<!-- 表示名 -->

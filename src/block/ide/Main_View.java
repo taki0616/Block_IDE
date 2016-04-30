@@ -5,14 +5,23 @@ import javax.swing.border.*;
 import java.awt.*;
 import java.util.Locale;
 import block.ide.lang.MsgTrans;
+import block.ide.Read_XML;
 
 public class Main_View extends JApplet{
 	private static final long serialVersionUID = 1L;
 	public void init(){
+	
 //		Locale defaultLocale = Locale.getDefault();
 		Locale.setDefault(Locale.US);
 		resize(800,600);
 		Dimension dim = getSize();
+		Read_XML rxml = new Read_XML();
+		try {
+			rxml.config_read();
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		Integer pane_wide = (dim.width-30)/13;
 		Integer pane_heig = (dim.height-50)/13;
 		JTabbedPane tabpane = new JTabbedPane();
