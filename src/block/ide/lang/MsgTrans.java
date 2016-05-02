@@ -7,7 +7,8 @@ public enum MsgTrans {
 	TABNAME01,
 	TABNAME02,
 	TABNAME03,
-	TABNAME04;
+	TABNAME04,
+	TABNAME05;
 	
 	@Override public String toString(){
 		try{

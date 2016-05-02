@@ -5,6 +5,10 @@
 			<ID>1</ID>
 		<!-- 表示名 -->
 			<NAME>START</NAME>
+		<!-- 表示色 -->
+			<COLOR>#00FFFF00</COLOR>
+		<!-- 形状 -->
+			<shape>1001</shape>
 		<!-- 変数数 -->
 			<VAL_NUM></VAL_NUM>
 		<!-- 変数名 -->
