@@ -18,4 +18,68 @@
 		<!-- 追加コード -->
 			<CODE></CODE>
 	</BLOCK>
+	<BLOCK name="END">
+			<ID>2</ID>
+			<NAME>END</NAME>
+			<COLOR>#00FFFF00</COLOR>
+			<shape>1001</shape>
+			<VAL_NUM></VAL_NUM>
+			<VAL_NAME></VAL_NAME>
+			<VAL_LABEL></VAL_LABEL>
+			<CODE>}</CODE>
+	</BLOCK>
+	<BLOCK name="IF">
+			<ID>3</ID>
+			<NAME>IF</NAME>
+			<COLOR>#00FFFF00</COLOR>
+			<shape>1002</shape>
+			<VAL_NUM></VAL_NUM>
+			<VAL_NAME></VAL_NAME>
+			<VAL_LABEL></VAL_LABEL>
+			<CODE>if %a {</CODE>
+	</BLOCK>	
+	<BLOCK name="FOR">
+			<ID>4</ID>
+			<NAME>FOR</NAME>
+			<COLOR>#00FFFF00</COLOR>
+			<shape>1003</shape>
+			<VAL_NUM></VAL_NUM>
+			<VAL_NAME></VAL_NAME>
+			<VAL_LABEL></VAL_LABEL>
+			<CODE>for(%a;%b;%c){</CODE>
+	</BLOCK>
+	<BLOCK name="WHILE">
+			<ID>5</ID>
+			<NAME>WHILE</NAME>
+			<COLOR>#00FFFF00</COLOR>
+			<shape>1003</shape>
+			<VAL_NUM></VAL_NUM>
+			<VAL_NAME></VAL_NAME>
+			<VAL_LABEL></VAL_LABEL>
+			<CODE>while(%a){</CODE>
+	</BLOCK>
+	<BLOCK name="OUTPUT">
+			<ID>6</ID>
+			<NAME>OUTPUT</NAME>
+			<COLOR>#00FFFF00</COLOR>
+			<shape>1004</shape>
+			<VAL_NUM></VAL_NUM>
+			<VAL_NAME></VAL_NAME>
+			<VAL_LABEL></VAL_LABEL>
+			<CODE></CODE>
+	</BLOCK>
+	<BLOCK name="INPUT">
+			<ID>7</ID>
+			<NAME>INPUT</NAME>
+			<COLOR>#00FFFF00</COLOR>
+			<shape>1004</shape>
+			<VAL_NUM></VAL_NUM>
+			<VAL_NAME></VAL_NAME>
+			<VAL_LABEL></VAL_LABEL>
+			<CODE></CODE>
+	</BLOCK>
+
+
+
+			
 </BLOCKS>

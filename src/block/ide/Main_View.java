@@ -22,7 +22,7 @@ public class Main_View extends JApplet{
 	//XMLからパーツデータ読み込み
 		Read_XML rxml = new Read_XML();
 		try {
-			rxml.config_read();
+			rxml.init_config_read();
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -66,10 +66,10 @@ public class Main_View extends JApplet{
 	}
 	
 	public JPanel tab1_view(Integer pane_wide,Integer pane_heig,JPanel tab1){
-		JPanel parts_win = new JPanel();
+		JScrollPane parts_win = new JScrollPane();
 		parts_win.setPreferredSize(new Dimension(pane_wide*5,pane_heig*13));
 		parts_win.setBorder(new LineBorder(Color.red,2));
-		JPanel main_win = new JPanel();
+		JScrollPane main_win = new JScrollPane();
 		main_win.setPreferredSize(new Dimension(pane_wide*8,pane_heig*13));
 		main_win.setBorder(new LineBorder(Color.red,2));
 		tab1.add(parts_win);

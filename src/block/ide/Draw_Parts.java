@@ -2,15 +2,19 @@ package block.ide;
 
 import java.awt.event.*;
 import java.awt.*;
-import java.util.Vector;
+import javax.swing.*;
 
 public class Draw_Parts extends Panel implements MouseListener,MouseMotionListener{
-//部品描画クラス
-	Vector shapes = new Vector();
+	private static final long serialVersionUID = 1L;
+	//部品描画クラス
 	int x1,y1;
-	public void DrawPanel(){
+	public void DrawPanel(JScrollPane scpane){
 		setForeground(Color.red);
 		setBackground(Color.white);
+		//部品を保管するLabelを作成。とりあえず、部品の数は１００個
+		//今後、XMLの要素数になるように変更する。
+		JLabel[] label = new JLabel[100];
+		
 		addMouseMotionListener(this);
 		addMouseListener(this);
 	}
@@ -36,9 +40,4 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 	public void mouseClicked(MouseEvent e){
 		
 	}
-	public void paint(Graphics g){
-		
-	}
-
-	
 }
