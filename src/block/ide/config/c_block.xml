@@ -8,7 +8,7 @@
 		<!-- 表示色 -->
 			<COLOR>#00FFFF00</COLOR>
 		<!-- 形状 -->
-			<shape>1001</shape>
+			<SHAPE>1001</SHAPE>
 		<!-- 変数数 -->
 			<VAL_NUM></VAL_NUM>
 		<!-- 変数名 -->
@@ -22,7 +22,7 @@
 			<ID>2</ID>
 			<NAME>END</NAME>
 			<COLOR>#00FFFF00</COLOR>
-			<shape>1001</shape>
+			<SHAPE>1001</SHAPE>
 			<VAL_NUM></VAL_NUM>
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
@@ -32,7 +32,7 @@
 			<ID>3</ID>
 			<NAME>IF</NAME>
 			<COLOR>#00FFFF00</COLOR>
-			<shape>1002</shape>
+			<SHAPE>1002</SHAPE>
 			<VAL_NUM></VAL_NUM>
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
@@ -42,7 +42,7 @@
 			<ID>4</ID>
 			<NAME>FOR</NAME>
 			<COLOR>#00FFFF00</COLOR>
-			<shape>1003</shape>
+			<SHAPE>1003</SHAPE>
 			<VAL_NUM></VAL_NUM>
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
@@ -52,7 +52,7 @@
 			<ID>5</ID>
 			<NAME>WHILE</NAME>
 			<COLOR>#00FFFF00</COLOR>
-			<shape>1003</shape>
+			<SHAPE>1003</SHAPE>
 			<VAL_NUM></VAL_NUM>
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
@@ -62,7 +62,7 @@
 			<ID>6</ID>
 			<NAME>OUTPUT</NAME>
 			<COLOR>#00FFFF00</COLOR>
-			<shape>1004</shape>
+			<SHAPE>1004</SHAPE>
 			<VAL_NUM></VAL_NUM>
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
@@ -72,7 +72,7 @@
 			<ID>7</ID>
 			<NAME>INPUT</NAME>
 			<COLOR>#00FFFF00</COLOR>
-			<shape>1004</shape>
+			<SHAPE>1004</SHAPE>
 			<VAL_NUM></VAL_NUM>
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>

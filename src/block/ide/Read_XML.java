@@ -9,6 +9,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.*;
 import block.ide.Check_Config_File.*;
+import block.ide.Menu_Icon.*;
 
 public class Read_XML {
 	public void init_config_read() throws Exception{
@@ -32,34 +33,53 @@ public class Read_XML {
 		Element root = docs.getDocumentElement();
 		System.out.println(root.getNodeName());
 	}
-	public void xml_node_read(String paths,DocumentBuilder docb){
+	public Menu_Icon[] xml_node_read(String paths,DocumentBuilder docb){
 		Document docs;
+		Menu_Icon[] menus = new Menu_Icon[100];
 		try {
+			int sttemp = 0;
 			docs = docb.parse(new File(paths));
 			Element root = docs.getDocumentElement();
-			System.out.println(root.getNodeName());
 			NodeList rootch = root.getChildNodes();
-			System.out.println(rootch.getLength());
-			for(int i=0;i < rootch.getLength();i++){
-				Node node = rootch.item(i);
-				if(node.getNodeType() == Node.ELEMENT_NODE){
-					Element elem = (Element)node;
-					if(elem.getNodeName().equals("BLOCK")){
-						NodeList perch = node.getChildNodes();
-						for(int j=0;j<perch.getLength();j++){
-							Node perno = perch.item(j);
-							if(perno.getNodeType() == Node.ELEMENT_NODE){
-								System.out.println(perno.getNodeName());
+			if(rootch.getLength() < 50){
+				for(int i=0;i < rootch.getLength();i++){
+					Node node = rootch.item(i);
+					if(node.getNodeType() == Node.ELEMENT_NODE){
+						Element elem = (Element)node;
+						if(elem.getNodeName().equals("BLOCK")){
+							NodeList perch = node.getChildNodes();
+							for(int j=0;j<perch.getLength();j++){
+								Node perno = perch.item(j);
+								if(perno.getNodeType() == Node.ELEMENT_NODE){
+									//中身がNULLじゃなかったらを追加
+									if(perno.getNodeName().equals("ID")){
+										sttemp++;
+										menus[sttemp].id = Integer.parseInt(perno.getTextContent());
+									}else if(perno.getNodeName().equals("NAME")){
+										menus[sttemp].name = perno.getTextContent();										
+									}else if(perno.getNodeName().equals("COLOR")){
+										menus[sttemp].color_no = Integer.parseInt(perno.getTextContent());									
+									}else if(perno.getNodeName().equals("SHAPE")){
+										menus[sttemp].shape = Integer.parseInt(perno.getTextContent());
+									}else if(perno.getNodeName().equals("VAL_NUM")){
+										menus[sttemp].value_num = Integer.parseInt(perno.getTextContent());
+									}else if(perno.getNodeName().equals("VAL_NAME")){
+										menus[sttemp].value_name = perno.getTextContent();
+									}else if(perno.getNodeName().equals("VAL_LABEL")){
+										menus[sttemp].value_label = perno.getTextContent();										
+									}else if(perno.getNodeName().equals("CODE")){
+										menus[sttemp].code = perno.getTextContent();
+									}
+								}
 							}
-							
 						}
 					}
 				}
 			}
-
 		} catch (SAXException | IOException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
+		return menus;
 	}
 }
