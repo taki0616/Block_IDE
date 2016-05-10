@@ -36,6 +36,9 @@ public class Read_XML {
 	public Menu_Icon[] xml_node_read(String paths,DocumentBuilder docb){
 		Document docs;
 		Menu_Icon[] menus = new Menu_Icon[100];
+		for(int i=0;i<100;i++){
+			menus[i] = new Menu_Icon();
+		}
 		try {
 			int sttemp = 0;
 			docs = docb.parse(new File(paths));
@@ -51,24 +54,28 @@ public class Read_XML {
 							for(int j=0;j<perch.getLength();j++){
 								Node perno = perch.item(j);
 								if(perno.getNodeType() == Node.ELEMENT_NODE){
-									//中身がNULLじゃなかったらを追加
-									if(perno.getNodeName().equals("ID")){
-										sttemp++;
-										menus[sttemp].id = Integer.parseInt(perno.getTextContent());
-									}else if(perno.getNodeName().equals("NAME")){
-										menus[sttemp].name = perno.getTextContent();										
-									}else if(perno.getNodeName().equals("COLOR")){
-										menus[sttemp].color_no = Integer.parseInt(perno.getTextContent());									
-									}else if(perno.getNodeName().equals("SHAPE")){
-										menus[sttemp].shape = Integer.parseInt(perno.getTextContent());
-									}else if(perno.getNodeName().equals("VAL_NUM")){
-										menus[sttemp].value_num = Integer.parseInt(perno.getTextContent());
-									}else if(perno.getNodeName().equals("VAL_NAME")){
-										menus[sttemp].value_name = perno.getTextContent();
-									}else if(perno.getNodeName().equals("VAL_LABEL")){
-										menus[sttemp].value_label = perno.getTextContent();										
-									}else if(perno.getNodeName().equals("CODE")){
-										menus[sttemp].code = perno.getTextContent();
+									if(!perno.getTextContent().isEmpty()){
+										if(perno.getNodeName().equals("ID")){
+											//これではずっと0
+											if(sttemp != 0){
+												sttemp++;
+											}
+											menus[sttemp].id = Integer.parseInt(perno.getTextContent());;
+										}else if(perno.getNodeName().equals("NAME")){
+											menus[sttemp].name = perno.getTextContent();
+										}else if(perno.getNodeName().equals("COLOR")){
+											menus[sttemp].color_no = perno.getTextContent();									
+										}else if(perno.getNodeName().equals("SHAPE")){
+											menus[sttemp].shape = Integer.parseInt(perno.getTextContent());
+										}else if(perno.getNodeName().equals("VAL_NUM")){
+											menus[sttemp].value_num = Integer.parseInt(perno.getTextContent());
+										}else if(perno.getNodeName().equals("VAL_NAME")){
+											menus[sttemp].value_name = perno.getTextContent();
+										}else if(perno.getNodeName().equals("VAL_LABEL")){
+											menus[sttemp].value_label = perno.getTextContent();										
+										}else if(perno.getNodeName().equals("CODE")){
+											menus[sttemp].code = perno.getTextContent();
+										}
 									}
 								}
 							}
@@ -79,6 +86,20 @@ public class Read_XML {
 		} catch (SAXException | IOException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+		}
+		for(int i = 0;i < 10;i++){
+			System.out.println(menus[i].id);
+			System.out.println(menus[i].color_no);
+			System.out.println(menus[i].shape);
+			System.out.println(menus[i].name);
+			System.out.println(menus[i].value_num);
+			System.out.println(menus[i].value_name);
+			System.out.println(menus[i].value_label);
+			System.out.println(menus[i].code);
+			System.out.println("-----------------");
+
+
+
 		}
 		return menus;
 	}
