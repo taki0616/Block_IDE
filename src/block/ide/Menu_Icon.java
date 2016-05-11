@@ -11,4 +11,5 @@ public class Menu_Icon {
 	String value_name;
 	String value_label;
 	String code;
+	String end_code;
 }

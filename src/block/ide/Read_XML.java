@@ -8,19 +8,16 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.*;
-import block.ide.Check_Config_File.*;
-import block.ide.Menu_Icon.*;
+//import block.ide.Check_Config_File.*;
 
 public class Read_XML {
-	public void init_config_read() throws Exception{
+	public Menu_Icon[] init_config_read() throws Exception{
 		DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docb = fac.newDocumentBuilder();
 		Check_Config_File ccf = new Check_Config_File();
 		File[] file_path = ccf.getPath("../src/block/ide/config/");
 		String paths = file_path[0].getPath();
-		xml_node_read(paths,docb);
-		//ここから先は別のメソッドにする
-		
+		return xml_node_read(paths,docb);		
 	}
 
 	public void config_read(String pathname) throws Exception{
@@ -41,6 +38,7 @@ public class Read_XML {
 		}
 		try {
 			int sttemp = 0;
+			int flag = 0;
 			docs = docb.parse(new File(paths));
 			Element root = docs.getDocumentElement();
 			NodeList rootch = root.getChildNodes();
@@ -56,10 +54,10 @@ public class Read_XML {
 								if(perno.getNodeType() == Node.ELEMENT_NODE){
 									if(!perno.getTextContent().isEmpty()){
 										if(perno.getNodeName().equals("ID")){
-											//これではずっと0
-											if(sttemp != 0){
+											if(flag != 0){
 												sttemp++;
 											}
+											flag++;
 											menus[sttemp].id = Integer.parseInt(perno.getTextContent());;
 										}else if(perno.getNodeName().equals("NAME")){
 											menus[sttemp].name = perno.getTextContent();
@@ -75,6 +73,8 @@ public class Read_XML {
 											menus[sttemp].value_label = perno.getTextContent();										
 										}else if(perno.getNodeName().equals("CODE")){
 											menus[sttemp].code = perno.getTextContent();
+										}else if(perno.getNodeName().equals("END_CODE")){
+											menus[sttemp].end_code = perno.getTextContent();
 										}
 									}
 								}
@@ -86,20 +86,6 @@ public class Read_XML {
 		} catch (SAXException | IOException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
-		}
-		for(int i = 0;i < 10;i++){
-			System.out.println(menus[i].id);
-			System.out.println(menus[i].color_no);
-			System.out.println(menus[i].shape);
-			System.out.println(menus[i].name);
-			System.out.println(menus[i].value_num);
-			System.out.println(menus[i].value_name);
-			System.out.println(menus[i].value_label);
-			System.out.println(menus[i].code);
-			System.out.println("-----------------");
-
-
-
 		}
 		return menus;
 	}

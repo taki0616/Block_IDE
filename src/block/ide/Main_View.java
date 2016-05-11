@@ -21,8 +21,9 @@ public class Main_View extends JApplet{
 		Dimension dim = getSize();
 	//XMLからパーツデータ読み込み
 		Read_XML rxml = new Read_XML();
+		Menu_Icon[] lists = new Menu_Icon[100];
 		try {
-			rxml.init_config_read();
+			lists = rxml.init_config_read();
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -34,7 +35,7 @@ public class Main_View extends JApplet{
 		JTabbedPane tabpane = new JTabbedPane();
 	//Block Programタブの生成
 		JPanel tab1 = new JPanel();
-		tab1 = tab1_view(pane_wide,pane_heig,tab1);
+		tab1 = tab1_view(pane_wide,pane_heig,tab1,lists);
 
 	//Code Programタブの生成
 		JPanel tab2 = new JPanel();
@@ -65,8 +66,10 @@ public class Main_View extends JApplet{
 		contentPane.add(tabpane, BorderLayout.CENTER);
 	}
 	
-	public JPanel tab1_view(Integer pane_wide,Integer pane_heig,JPanel tab1){
-		JScrollPane parts_win = new JScrollPane();
+	public JPanel tab1_view(Integer pane_wide,Integer pane_heig,JPanel tab1,Menu_Icon[] lists){
+		//JScrollPane parts_win = new JScrollPane();
+		Draw_Parts dpf = new Draw_Parts();
+		JScrollPane parts_win = dpf.DrawPanel(lists);
 		parts_win.setPreferredSize(new Dimension(pane_wide*5,pane_heig*13));
 		parts_win.setBorder(new LineBorder(Color.red,2));
 		JScrollPane main_win = new JScrollPane();

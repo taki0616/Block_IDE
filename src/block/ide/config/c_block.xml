@@ -17,6 +17,8 @@
 			<VAL_LABEL></VAL_LABEL>
 		<!-- 追加コード -->
 			<CODE></CODE>
+		<!-- 行末文字 -->
+			<END_CODE></END_CODE>
 	</BLOCK>
 	<BLOCK name="END">
 			<ID>2</ID>
@@ -27,6 +29,7 @@
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
 			<CODE>}</CODE>
+			<END_CODE></END_CODE>
 	</BLOCK>
 	<BLOCK name="IF">
 			<ID>3</ID>
@@ -37,6 +40,7 @@
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
 			<CODE>if %a {</CODE>
+			<END_CODE></END_CODE>
 	</BLOCK>	
 	<BLOCK name="FOR">
 			<ID>4</ID>
@@ -47,6 +51,7 @@
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
 			<CODE>for(%a;%b;%c){</CODE>
+			<END_CODE></END_CODE>			
 	</BLOCK>
 	<BLOCK name="WHILE">
 			<ID>5</ID>
@@ -57,6 +62,7 @@
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
 			<CODE>while(%a){</CODE>
+			<END_CODE></END_CODE>			
 	</BLOCK>
 	<BLOCK name="OUTPUT">
 			<ID>6</ID>
@@ -67,6 +73,7 @@
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
 			<CODE></CODE>
+			<END_CODE></END_CODE>			
 	</BLOCK>
 	<BLOCK name="INPUT">
 			<ID>7</ID>
@@ -77,9 +84,6 @@
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
 			<CODE></CODE>
-	</BLOCK>
-
-
-
-			
+			<END_CODE></END_CODE>			
+	</BLOCK>		
 </BLOCKS>

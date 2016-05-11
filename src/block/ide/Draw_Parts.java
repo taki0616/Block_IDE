@@ -8,15 +8,23 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 	private static final long serialVersionUID = 1L;
 	//部品描画クラス
 	int x1,y1;
-	public void DrawPanel(JScrollPane scpane){
+	public JScrollPane DrawPanel(Menu_Icon[] lists){
+		JScrollPane pane = new JScrollPane();
 		setForeground(Color.red);
 		setBackground(Color.white);
 		//部品を保管するLabelを作成。とりあえず、部品の数は１００個
 		//今後、XMLの要素数になるように変更する。
+		int i = 0;
+		while(lists[i].id != 0){
+			i++;
+		}
+		System.out.println(i);
 		JLabel[] label = new JLabel[100];
+		
 		
 		addMouseMotionListener(this);
 		addMouseListener(this);
+		return pane;
 	}
 	
 	public void mousePressed(MouseEvent e){
