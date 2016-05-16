@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import java.util.*;
 
 public class Draw_Parts extends Panel implements MouseListener,MouseMotionListener{
 	private static final long serialVersionUID = 1L;
@@ -23,11 +24,11 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 		while(lists[i].id != 0){
 			i++;
 		}
+		lists = sortList(lists);
 		JLabel[] label = new JLabel[i];
-		//ラベルをグルーピングするか？
 		//グループするならlists[j].shapeで判断する
 		//(int)(shape/100)
-		//1:Command 2:Input 3:Output 4: 5:Other 
+		//1:Control 2:Input 3:Output 4:Operators 5:Utility 6:Tools 7:Raspberry Pi 99:Other
 		for(int j = 0;j < i;j++){
 			label[j] = new JLabel();
 			label[j].setText(lists[j].name);
@@ -36,7 +37,6 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 			label[j].setVerticalAlignment(JLabel.CENTER);			
 			label[j].setBorder(new LineBorder(Color.black,2));
 			panels.add(label[j]);
-			System.out.println(lists[j].code);
 		}
 		jview.add(panels);
 		
@@ -44,7 +44,17 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 		addMouseListener(this);
 		return pane;
 	}
-	
+	public Menu_Icon[] sortList(Menu_Icon[] list_org){
+		ArrayList<Menu_Icon> templist = new ArrayList<Menu_Icon>();
+		int i = 0;
+		while(list_org[i].id != 0){
+			templist.add(list_org[i]);
+			i++;
+		}	
+		Collections.sort(templist,new Sort_List());
+		Menu_Icon[] list_sort = (Menu_Icon[])templist.toArray(new Menu_Icon[0]);
+		return list_sort;
+	}
 	public void mousePressed(MouseEvent e){
 		
 	}
