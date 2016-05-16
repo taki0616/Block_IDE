@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 <BLOCKS name="C_IDE">
+	<INIT_CODE>
+		#include ¥stdio.h¥
+		#include ¥  ¥
+		main(){
+	</INIT_CODE>
+	<END_CODE>}</END_CODE>
 	<BLOCK name="START">
 		<!-- ID -->
 			<ID>1</ID>
@@ -40,7 +46,7 @@
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
 			<CODE>if %a {</CODE>
-			<END_CODE></END_CODE>
+			<END_CODE>}</END_CODE>
 	</BLOCK>	
 	<BLOCK name="FOR">
 			<ID>4</ID>
@@ -51,7 +57,7 @@
 			<VAL_NAME></VAL_NAME>
 			<VAL_LABEL></VAL_LABEL>
 			<CODE>for(%a;%b;%c){</CODE>
-			<END_CODE></END_CODE>			
+			<END_CODE>}</END_CODE>			
 	</BLOCK>
 	<BLOCK name="WHILE">
 			<ID>5</ID>
