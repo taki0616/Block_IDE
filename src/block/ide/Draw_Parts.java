@@ -27,19 +27,98 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 		lists = sortList(lists);
 		JLabel[] label = new JLabel[i];
 		//グループするならlists[j].shapeで判断する
-		//(int)(shape/100)
 		//1:Control 2:Input 3:Output 4:Operators 5:Utility 6:Tools 7:Raspberry Pi 99:Other
+		int temp_flag = 0;
+		int grp_tmp = 0;
+		int rile = 0;
+		//開始座標
+		int x = 0;
+		int y = 0;
+		int wide = 400;
+		int heig = 20;
 		for(int j = 0;j < i;j++){
+			int shape_grp = lists[j].shape/1000;
 			label[j] = new JLabel();
-			label[j].setText(lists[j].name);
-			label[j].setBounds(5,j*50+j*5+5,100,50);
-			label[j].setHorizontalAlignment(JLabel.CENTER);
-			label[j].setVerticalAlignment(JLabel.CENTER);			
-			label[j].setBorder(new LineBorder(Color.black,2));
-			panels.add(label[j]);
+			if(shape_grp == grp_tmp){
+				if(rile == 0){
+					x = 5;
+					label[j].setText(lists[j].name);
+					label[j].setBounds(x,y,100,50);
+					label[j].setHorizontalAlignment(JLabel.CENTER);
+					label[j].setVerticalAlignment(JLabel.CENTER);			
+					label[j].setBorder(new LineBorder(Color.black,2));
+					panels.add(label[j]);
+					rile = 1;
+				}else{
+					x = x + 105;
+					label[j].setText(lists[j].name);
+					label[j].setBounds(x,y,100,50);
+					label[j].setHorizontalAlignment(JLabel.CENTER);
+					label[j].setVerticalAlignment(JLabel.CENTER);			
+					label[j].setBorder(new LineBorder(Color.black,2));
+					panels.add(label[j]);
+					y = y + 55;
+					rile = 0;
+				}
+				
+			}else{
+				grp_tmp = shape_grp;
+				rile = 0;
+				JLabel tlabel = new JLabel();
+				if(grp_tmp == 1){
+					tlabel.setText("Control");
+					tlabel.setBackground(Color.cyan);
+					tlabel.setOpaque(true);
+					tlabel.setBounds(x, y, wide, heig);
+				}else if(grp_tmp == 2){
+					tlabel.setText("Input");
+					tlabel.setBackground(Color.cyan);					
+					tlabel.setOpaque(true);
+					tlabel.setBounds(x, y, wide, heig);
+				}else if(grp_tmp == 3){
+					tlabel.setText("Output");
+					tlabel.setBackground(Color.cyan);
+					tlabel.setOpaque(true);
+					tlabel.setBounds(x, y, wide, heig);
+				}else if(grp_tmp == 4){
+					tlabel.setText("Operation");
+					tlabel.setBackground(Color.cyan);
+					tlabel.setOpaque(true);
+					tlabel.setBounds(x, y, wide, heig);
+				}else if(grp_tmp == 5){
+					tlabel.setText("Utility");
+					tlabel.setBackground(Color.cyan);
+					tlabel.setOpaque(true);
+					tlabel.setBounds(x, y, wide, heig);
+				}else if(grp_tmp == 6){
+					tlabel.setText("Tools");
+					tlabel.setBackground(Color.cyan);
+					tlabel.setOpaque(true);
+					tlabel.setBounds(x, y, wide, heig);
+				}else if(grp_tmp == 7){
+					tlabel.setText("Raspberry Pi");
+					tlabel.setBackground(Color.cyan);
+					tlabel.setOpaque(true);
+					tlabel.setBounds(x, y, wide, heig);
+				}else if(grp_tmp == 99){
+					tlabel.setText("Other");
+					tlabel.setBackground(Color.cyan);
+					tlabel.setOpaque(true);
+					tlabel.setBounds(x, y, wide, heig);
+				}
+				panels.add(tlabel);
+				y = y + heig + 5;
+				x=5;
+				label[j].setText(lists[j].name);
+				label[j].setBounds(x,y,100,50);
+				label[j].setHorizontalAlignment(JLabel.CENTER);
+				label[j].setVerticalAlignment(JLabel.CENTER);			
+				label[j].setBorder(new LineBorder(Color.black,2));
+				panels.add(label[j]);
+				rile = 1;
+			}
 		}
-		jview.add(panels);
-		
+		jview.add(panels);		
 		addMouseMotionListener(this);
 		addMouseListener(this);
 		return pane;
