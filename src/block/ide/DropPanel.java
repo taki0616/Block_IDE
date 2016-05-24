@@ -15,7 +15,7 @@ import java.io.IOException;
 public class DropPanel extends JPanel implements Transferable,DropTargetListener{
 	private static final DataFlavor myFlavor = new DataFlavor(DropPanel.class,"DropPanel");
 	public DropPanel(){
-		new DropTarget(this,DnDConstants.ACTION_MOVE,this);
+		new DropTarget(this,DnDConstants.ACTION_COPY,this);
 	}
 	@Override
 	public DataFlavor[] getTransferDataFlavors(){
@@ -23,18 +23,22 @@ public class DropPanel extends JPanel implements Transferable,DropTargetListener
 	}
 	@Override
 	public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException,IOException{
-			return this;
+		String fla = flavor.getHumanPresentableName();
+		System.out.println("FLAVOR:"+fla);
+		return this;
 	}
 	@Override
 	public void drop(DropTargetDropEvent dtde){
 		System.out.println("Drop Start");
-		dtde.acceptDrop(DnDConstants.ACTION_MOVE);
+		dtde.acceptDrop(DnDConstants.ACTION_COPY);
 		Transferable tr = dtde.getTransferable();
 		
 		try{
 			if(dtde.isDataFlavorSupported(myFlavor)){
 				DragLabel lbl = (DragLabel)tr.getTransferData(myFlavor);
 				System.out.println(lbl.getText());
+			}else{
+				System.out.println("Not Supported!");
 			}
 		}catch(Exception e){
 			e.printStackTrace();

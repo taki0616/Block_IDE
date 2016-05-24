@@ -16,8 +16,8 @@ public class DragLabel extends JLabel implements Transferable,DragGestureListene
 		setBackground(color);
 		setOpaque(true);
 		
-		new DragSource().createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_MOVE,this);
-		new DropTarget(this,DnDConstants.ACTION_MOVE,this);
+		new DragSource().createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_COPY,this);
+		new DropTarget(this,DnDConstants.ACTION_COPY,this);
 	}
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dge){
@@ -36,7 +36,7 @@ public class DragLabel extends JLabel implements Transferable,DragGestureListene
 	@Override
 	public void drop(DropTargetDropEvent dtde){
 		System.out.println("ドロップ開始");
-		dtde.acceptDrop(DnDConstants.ACTION_MOVE);
+		dtde.acceptDrop(DnDConstants.ACTION_COPY);
 		Transferable tr = dtde.getTransferable();
 		
 		try{

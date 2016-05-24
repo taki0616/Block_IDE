@@ -67,15 +67,20 @@ public class Main_View extends JApplet{
 	}
 	
 	public JPanel tab1_view(Integer pane_wide,Integer pane_heig,JPanel tab1,Menu_Icon[] lists){
-		//JScrollPane parts_win = new JScrollPane();
 		Draw_Parts dpf = new Draw_Parts();
 		JScrollPane parts_win = dpf.DrawPanel(lists,pane_wide,pane_heig);
-		JLabel label1 = new JLabel("test");
-		parts_win.add(label1);
 		JScrollPane main_win = new JScrollPane();
 		main_win.setPreferredSize(new Dimension(pane_wide*8,pane_heig*13));
 		main_win.setBorder(new LineBorder(Color.blue,2));
-		main_win.add(label1);
+		JViewport jviews = main_win.getViewport();
+		DropPanel panes = new DropPanel();
+		panes.setLayout(null);
+		panes.setBackground(Color.red);
+		JLabel label1 = new JLabel("test");
+		label1.setBounds(20,20,100,50);
+		label1.setBorder(new LineBorder(Color.black));
+		panes.add(label1);
+		jviews.add(panes);
 		tab1.add(parts_win);
 		tab1.add(main_win);
 		return tab1;
