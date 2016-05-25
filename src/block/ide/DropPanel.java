@@ -2,68 +2,65 @@ package block.ide;
 import javax.swing.JPanel;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
-import java.io.IOException;
+import java.awt.Color;
+import java.awt.Point;
 
 @SuppressWarnings("serial")
-public class DropPanel extends JPanel implements Transferable,DropTargetListener{
-	private static final DataFlavor myFlavor = new DataFlavor(DropPanel.class,"DropPanel");
+public class DropPanel extends JPanel{
+	private static int action = DnDConstants.ACTION_MOVE
+			;
 	public DropPanel(){
-		new DropTarget(this,DnDConstants.ACTION_COPY,this);
+		super();
+		setLayout(null);
+		setBackground(Color.white);
+		new DropTarget(this,action,dropTargetListener);
 	}
-	@Override
-	public DataFlavor[] getTransferDataFlavors(){
-		return new DataFlavor[] {myFlavor};
+	public void addDroppedText(String text,Point droppedLocation){
+		DragLabel item = new DragLabel();
+		item.setText(text);
+		item.setLocation(droppedLocation);
+		add(item);
+		repaint();
 	}
-	@Override
-	public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException,IOException{
-		String fla = flavor.getHumanPresentableName();
-		System.out.println("FLAVOR:"+fla);
-		return this;
-	}
-	@Override
-	public void drop(DropTargetDropEvent dtde){
-		System.out.println("Drop Start");
-		dtde.acceptDrop(DnDConstants.ACTION_COPY);
-		Transferable tr = dtde.getTransferable();
-		
-		try{
-			if(dtde.isDataFlavorSupported(myFlavor)){
-				DragLabel lbl = (DragLabel)tr.getTransferData(myFlavor);
-				System.out.println(lbl.getText());
-			}else{
-				System.out.println("Not Supported!");
+	private DropTargetListener dropTargetListener = new DropTargetListener(){
+		public void drop (DropTargetDropEvent e){
+			e.acceptDrop(action);
+			Transferable tr = e.getTransferable();
+			boolean gotData = false;
+			try{
+				String data = null;
+				if(e.isDataFlavorSupported(DataFlavor.stringFlavor)){
+					data = (String)tr.getTransferData(DataFlavor.stringFlavor);
+				}
+				if(data!=null){
+					gotData = true;
+					Point droppedLocation = e.getLocation();
+					addDroppedText(data,droppedLocation);
+				}
+			}catch(Exception ex){
+				ex.printStackTrace();
 			}
-		}catch(Exception e){
-			e.printStackTrace();
+			finally{
+				e.dropComplete(gotData);
+			}
 		}
-	}
-	@Override
-	public void dropActionChanged(DropTargetDragEvent dtde){
-
-	}
-	@Override
-	public void dragExit(DropTargetEvent dte){
-		
-	}
-	@Override
-	public void dragEnter(DropTargetDragEvent dtde) {
-		// TODO 自動生成されたメソッド・スタブ
-		
-	}
-	@Override
-	public void dragOver(DropTargetDragEvent dtde) {
-		// TODO 自動生成されたメソッド・スタブ
-		
-	}
-	@Override
-	public boolean isDataFlavorSupported(DataFlavor flavor) {
-		return true;
-	}
+		public void dragOver(DropTargetDragEvent dtde){
+			
+		}
+		public void dragExit(DropTargetEvent dte){
+			
+		}
+		public void dragEnter(DropTargetDragEvent dtde){
+			
+		}
+		public void dropActionChanged(DropTargetDragEvent dtde){
+			
+		}
+	};
 }

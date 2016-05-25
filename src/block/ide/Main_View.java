@@ -74,12 +74,6 @@ public class Main_View extends JApplet{
 		main_win.setBorder(new LineBorder(Color.blue,2));
 		JViewport jviews = main_win.getViewport();
 		DropPanel panes = new DropPanel();
-		panes.setLayout(null);
-		panes.setBackground(Color.red);
-		JLabel label1 = new JLabel("test");
-		label1.setBounds(20,20,100,50);
-		label1.setBorder(new LineBorder(Color.black));
-		panes.add(label1);
 		jviews.add(panes);
 		tab1.add(parts_win);
 		tab1.add(main_win);

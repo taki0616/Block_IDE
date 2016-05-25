@@ -15,9 +15,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 		pane.setPreferredSize(new Dimension(pane_wide*5,pane_heig*13));
 		pane.setBorder(new LineBorder(Color.green,2));
 		JViewport jview = pane.getViewport();
-		JPanel panels = new JPanel();
-		panels.setLayout(null);
-		panels.setBackground(Color.white);
+		DragPanel panels = new DragPanel();
 
 		//部品の数を抽出
 		int i = 0;
@@ -37,7 +35,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 		int heig = 20;
 		for(int j = 0;j < i;j++){
 			int shape_grp = lists[j].shape/1000;
-			label[j] = new DragLabel("",Color.white);
+			label[j] = new DragLabel();
 			if(shape_grp == grp_tmp){
 				if(rile == 0){
 					x = 5;
