@@ -9,6 +9,7 @@ import java.util.*;
 public class Draw_Parts extends Panel implements MouseListener,MouseMotionListener{
 	private static final long serialVersionUID = 1L;
 	//部品描画クラス
+	public static Menu_Icon[] lists_all;
 	int x1,y1;
 	public JScrollPane DrawPanel(Menu_Icon[] lists,int pane_wide,int pane_heig){
 		JScrollPane pane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -23,6 +24,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 			i++;
 		}
 		lists = sortList(lists);
+		lists_all = lists;
 		DragLabel[] label = new DragLabel[i];
 		//グループするならlists[j].shapeで判断する
 		//1:Control 2:Input 3:Output 4:Operators 5:Utility 6:Tools 7:Raspberry Pi 99:Other
@@ -44,6 +46,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 					label[j].setHorizontalAlignment(JLabel.CENTER);
 					label[j].setVerticalAlignment(JLabel.CENTER);			
 					label[j].setBorder(new LineBorder(Color.black,2));
+					label[j].setID(lists[j].id);
 					panels.add(label[j]);
 					rile = 1;
 				}else{
@@ -53,6 +56,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 					label[j].setHorizontalAlignment(JLabel.CENTER);
 					label[j].setVerticalAlignment(JLabel.CENTER);			
 					label[j].setBorder(new LineBorder(Color.black,2));
+					label[j].setID(lists[j].id);
 					panels.add(label[j]);
 					y = y + 55;
 					rile = 0;
@@ -114,6 +118,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 				label[j].setHorizontalAlignment(JLabel.CENTER);
 				label[j].setVerticalAlignment(JLabel.CENTER);			
 				label[j].setBorder(new LineBorder(Color.black,2));
+				label[j].setID(lists[j].id);
 				panels.add(label[j]);
 				rile = 1;
 			}

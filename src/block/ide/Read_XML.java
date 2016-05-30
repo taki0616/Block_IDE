@@ -89,4 +89,9 @@ public class Read_XML {
 		}
 		return menus;
 	}
+	public String getLabelTitle(int id){
+		String label_name = new String();
+		
+		return label_name;
+	}
 }
