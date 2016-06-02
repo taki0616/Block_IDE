@@ -24,7 +24,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 			i++;
 		}
 		lists = sortList(lists);
-		lists_all = lists;
+		PartsData.parts_list = lists;
 		DragLabel[] label = new DragLabel[i];
 		//グループするならlists[j].shapeで判断する
 		//1:Control 2:Input 3:Output 4:Operators 5:Utility 6:Tools 7:Raspberry Pi 99:Other

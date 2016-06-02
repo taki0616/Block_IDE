@@ -13,6 +13,8 @@ import java.awt.Point;
 
 @SuppressWarnings("serial")
 public class DropPanel extends JPanel{
+	public static DropParts[] ovs = new DropParts[500];
+	public static int partsum = 0;
 	private static int action = DnDConstants.ACTION_MOVE;
 	public DropPanel(){
 		super();
@@ -24,13 +26,16 @@ public class DropPanel extends JPanel{
 	public void addDroppedText(String text,Point droppedLocation){
 		DragLabel item = new DragLabel();
 		int ids = Integer.parseInt(text);
+		PartsData sett = new PartsData();
+		Menu_Icon partss = new Menu_Icon();
+		partss = sett.getMenu(ids);
+		item.setText(partss.name);
 		item.setID(ids);
-		for(int i = 0;i < Draw_Parts.lists_all.length;i++){
-			if(Draw_Parts.lists_all[i].id == ids){
-				item.setText(Draw_Parts.lists_all[i].name);
-			}			
-		}
 		item.setLocation(droppedLocation);
+		ovs[partsum] = new DropParts();
+		ovs[partsum].id = partsum;
+		ovs[partsum].partsid = partss.id;
+		partsum++;
 		DSLabelListener l = new DSLabelListener(){
 			public void requestRemove(DragLabel dsl){
 				remove(dsl);
