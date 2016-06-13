@@ -25,19 +25,59 @@ public class DropPanel extends JPanel{
 	}
 	public void addDroppedText(String text,Point droppedLocation){
 		DragLabel item = new DragLabel();
-		int ids = Integer.parseInt(text);
+		int ids;
+		int selec;
+		String check_po = text.substring(0,1);
+		String strcom = text.substring(2-1);
+		ids = Integer.parseInt(strcom);	
+		if(check_po.equals("F")){
+			selec = 0;
+		}else{
+			selec = 1;
+		}
 		PartsData sett = new PartsData();
 		Menu_Icon partss = new Menu_Icon();
-		partss = sett.getMenu(ids);
-		item.setText(partss.name);
-		item.setID(ids);
-		item.setLocation(droppedLocation);
-		ovs[partsum] = new DropParts();
-		ovs[partsum].id = partsum;
-		ovs[partsum].partsid = partss.id;
-		partsum++;
+		if(selec == 0){
+			//初回ブロック作成時にovsの空き状況をチェックして空いている箇所があれば埋める
+			if(partsum != 0){
+				int partsums = 0;
+				for(int jj = 0 ; jj < partsum ; jj++){
+					if(ovs[jj].visual == false){
+						partsums = jj;
+					}
+				}
+				if(partsums != 0){
+					partsum = partsums;
+				}else{
+					partsum++;
+				}
+			}
+			partss = sett.getMenu(ids);
+			item.setText(partss.name);
+			item.setID(partsum);
+			item.setUID(ids);
+			item.setLocation(droppedLocation);
+			ovs[partsum] = new DropParts();
+			ovs[partsum].id = partsum;
+			ovs[partsum].partsid = partss.id;
+			ovs[partsum].axis_x = droppedLocation.x;
+			ovs[partsum].axis_y = droppedLocation.y;
+			ovs[partsum].visual = true;
+		}else{
+			//登録済みブロックをDnDした時の処理
+			partss  = sett.getMenubyUID(ids);
+			item.setText(partss.name);
+			item.setID(ids);
+			item.setUID(partss.id);
+			item.setLocation(droppedLocation);
+			ovs[ids].id = ids;
+			ovs[ids].partsid = partss.id;
+			ovs[ids].axis_x = droppedLocation.x;
+			ovs[ids].axis_y = droppedLocation.y;
+			ovs[ids].visual = true;	
+		}
 		DSLabelListener l = new DSLabelListener(){
-			public void requestRemove(DragLabel dsl){
+			public void requestRemove(DragLabel dsl){			
 				remove(dsl);
 				revalidate();
 				repaint();
@@ -45,6 +85,9 @@ public class DropPanel extends JPanel{
 		};
 		item.addListener(l);
 		add(item);
+		for(int nn = 0 ; nn < partsum ; nn++){
+			System.out.println("parts Num:"+nn+" parts ID:"+ovs[nn].partsid+" X="+ovs[nn].axis_x+" Y="+ovs[nn].axis_y);			
+		}
 		repaint();
 	}
 	private DropTargetListener dropTargetListener = new DropTargetListener(){

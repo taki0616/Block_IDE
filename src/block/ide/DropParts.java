@@ -7,4 +7,7 @@ public class DropParts {
 	int cobid;
 	int cocid;
 	int codid;
+	boolean visual;
+	int axis_x;
+	int axis_y;
 }

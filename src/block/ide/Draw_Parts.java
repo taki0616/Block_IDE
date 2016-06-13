@@ -11,13 +11,17 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 	//部品描画クラス
 	public static Menu_Icon[] lists_all;
 	int x1,y1;
+//	PopupMenu pop = new PopupMenu();
 	public JScrollPane DrawPanel(Menu_Icon[] lists,int pane_wide,int pane_heig){
 		JScrollPane pane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		pane.setPreferredSize(new Dimension(pane_wide*5,pane_heig*13));
 		pane.setBorder(new LineBorder(Color.green,2));
 		JViewport jview = pane.getViewport();
 		DragPanel panels = new DragPanel();
-
+/*		pop.add(new MenuItem("Connect"));
+		pop.add(new MenuItem("DELETE"));
+		pop.add(new MenuItem("Value"));
+		add(pop);*/
 		//部品の数を抽出
 		int i = 0;
 		while(lists[i].id != 0){
@@ -25,6 +29,8 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 		}
 		lists = sortList(lists);
 		PartsData.parts_list = lists;
+		//ポップアップメニューの設定
+		
 		DragLabel[] label = new DragLabel[i];
 		//グループするならlists[j].shapeで判断する
 		//1:Control 2:Input 3:Output 4:Operators 5:Utility 6:Tools 7:Raspberry Pi 99:Other
@@ -47,6 +53,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 					label[j].setVerticalAlignment(JLabel.CENTER);			
 					label[j].setBorder(new LineBorder(Color.black,2));
 					label[j].setID(lists[j].id);
+					label[j].setUID(0);
 					panels.add(label[j]);
 					rile = 1;
 				}else{
@@ -57,6 +64,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 					label[j].setVerticalAlignment(JLabel.CENTER);			
 					label[j].setBorder(new LineBorder(Color.black,2));
 					label[j].setID(lists[j].id);
+					label[j].setUID(0);
 					panels.add(label[j]);
 					y = y + 55;
 					rile = 0;
@@ -119,6 +127,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 				label[j].setVerticalAlignment(JLabel.CENTER);			
 				label[j].setBorder(new LineBorder(Color.black,2));
 				label[j].setID(lists[j].id);
+				label[j].setUID(0);
 				panels.add(label[j]);
 				rile = 1;
 			}
@@ -158,6 +167,6 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 		
 	}
 	public void mouseClicked(MouseEvent e){
-		
+//		pop.show(this,e.getX(),e.getY());
 	}
 }
