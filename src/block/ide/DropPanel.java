@@ -16,6 +16,7 @@ public class DropPanel extends JPanel{
 	public static DropParts[] ovs = new DropParts[500];
 	public static int partsum = 0;
 	private static int action = DnDConstants.ACTION_MOVE;
+
 	public DropPanel(){
 		super();
 		setLayout(null);

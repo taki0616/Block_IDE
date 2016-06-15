@@ -5,26 +5,61 @@ import java.awt.Cursor;
 import javax.swing.JLabel;
 import java.awt.datatransfer.*;
 import java.awt.dnd.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import java.util.ArrayList;
+import java.awt.PopupMenu;
+import java.awt.MenuItem;
 
 @SuppressWarnings("serial")
-public class DragLabel extends JLabel{
+public class DragLabel extends JLabel implements MouseListener{
 
 	public int id;
 	public int uid;
+	PopupMenu pop = new PopupMenu();
 	public DragLabel(){
 		super();
 		int dragAction = DnDConstants.ACTION_MOVE;
+		addPopupMenuItem("Connect",this.id,new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Connect Select");	
+				//System.out.println();
+			}
+		});
+		addPopupMenuItem("Delete",this.id,new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Delete Select");				
+			}
+		});
+		addPopupMenuItem("Value Input",this.id,new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Value Select");				
+			}
+		});
 		setHorizontalAlignment(CENTER);
 		setVerticalAlignment(CENTER);
 		setSize(100,50);
 		setBorder(new LineBorder(Color.black,2));
 		setBackground(Color.white);
 		setOpaque(true);
+		add(pop);
+		addMouseListener(this);
 		
 		new DragSource().createDefaultDragGestureRecognizer(this, dragAction,dgl);
+	}
+	private MenuItem addPopupMenuItem(String name,int id,ActionListener a){
+		MenuItem item = new MenuItem(name);
+		item.addActionListener(a);
+		item.setName(String.valueOf(id));
+		pop.add(item);
+		return item;
 	}
 	public int getID(){
 		return id;
@@ -92,4 +127,31 @@ public class DragLabel extends JLabel{
 			
 		}
 	};
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+		System.out.println("Clicked");
+		pop.show(this,e.getX(),e.getY());
+
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
 }

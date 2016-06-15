@@ -6,19 +6,19 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.util.*;
 
-public class Draw_Parts extends Panel implements MouseListener,MouseMotionListener{
+public class Draw_Parts extends Panel implements MouseMotionListener{
 	private static final long serialVersionUID = 1L;
 	//部品描画クラス
 	public static Menu_Icon[] lists_all;
 	int x1,y1;
-//	PopupMenu pop = new PopupMenu();
+	//PopupMenu pop = new PopupMenu();
 	public JScrollPane DrawPanel(Menu_Icon[] lists,int pane_wide,int pane_heig){
 		JScrollPane pane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		pane.setPreferredSize(new Dimension(pane_wide*5,pane_heig*13));
 		pane.setBorder(new LineBorder(Color.green,2));
 		JViewport jview = pane.getViewport();
 		DragPanel panels = new DragPanel();
-/*		pop.add(new MenuItem("Connect"));
+		/*pop.add(new MenuItem("Connect"));
 		pop.add(new MenuItem("DELETE"));
 		pop.add(new MenuItem("Value"));
 		add(pop);*/
@@ -30,7 +30,7 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 		lists = sortList(lists);
 		PartsData.parts_list = lists;
 		//ポップアップメニューの設定
-		
+
 		DragLabel[] label = new DragLabel[i];
 		//グループするならlists[j].shapeで判断する
 		//1:Control 2:Input 3:Output 4:Operators 5:Utility 6:Tools 7:Raspberry Pi 99:Other
@@ -134,7 +134,6 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 		}
 		jview.add(panels);		
 		addMouseMotionListener(this);
-		addMouseListener(this);
 		return pane;
 	}
 	public Menu_Icon[] sortList(Menu_Icon[] list_org){
@@ -148,25 +147,14 @@ public class Draw_Parts extends Panel implements MouseListener,MouseMotionListen
 		Menu_Icon[] list_sort = (Menu_Icon[])templist.toArray(new Menu_Icon[0]);
 		return list_sort;
 	}
-	public void mousePressed(MouseEvent e){
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
 		
 	}
-	public void mouseDragged(MouseEvent e){
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
 		
-	}
-	public void mouseMoved(MouseEvent e){
-		
-	}
-	public void mouseReleased(MouseEvent e){
-		
-	}
-	public void mouseEntered(MouseEvent e){
-		
-	}
-	public void mouseExited(MouseEvent e){
-		
-	}
-	public void mouseClicked(MouseEvent e){
-//		pop.show(this,e.getX(),e.getY());
 	}
 }

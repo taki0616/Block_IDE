@@ -24,7 +24,6 @@ public class PartsData {
 	public Menu_Icon getMenubyUID(int ids){
 		Menu_Icon val = new Menu_Icon();
 		for(int i = 0 ; i < DropPanel.partsum+1 ; i++){
-			System.out.println("i : "+ i);
 			if(DropPanel.ovs[i].id == ids){
 				val = getMenu(DropPanel.ovs[i].partsid);
 			}
