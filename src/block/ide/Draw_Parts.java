@@ -11,17 +11,12 @@ public class Draw_Parts extends Panel implements MouseMotionListener{
 	//部品描画クラス
 	public static Menu_Icon[] lists_all;
 	int x1,y1;
-	//PopupMenu pop = new PopupMenu();
 	public JScrollPane DrawPanel(Menu_Icon[] lists,int pane_wide,int pane_heig){
 		JScrollPane pane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		pane.setPreferredSize(new Dimension(pane_wide*5,pane_heig*13));
 		pane.setBorder(new LineBorder(Color.green,2));
 		JViewport jview = pane.getViewport();
 		DragPanel panels = new DragPanel();
-		/*pop.add(new MenuItem("Connect"));
-		pop.add(new MenuItem("DELETE"));
-		pop.add(new MenuItem("Value"));
-		add(pop);*/
 		//部品の数を抽出
 		int i = 0;
 		while(lists[i].id != 0){

@@ -17,18 +17,27 @@ import java.awt.MenuItem;
 
 @SuppressWarnings("serial")
 public class DragLabel extends JLabel implements MouseListener{
-
 	public int id;
 	public int uid;
+	public boolean isConnectMODE = false;
+	
 	PopupMenu pop = new PopupMenu();
 	public DragLabel(){
 		super();
 		int dragAction = DnDConstants.ACTION_MOVE;
+		System.out.println("this:"+this.id);
+		setHorizontalAlignment(CENTER);
+		setVerticalAlignment(CENTER);
+		setSize(100,50);
+		setBorder(new LineBorder(Color.black,2));
+		setBackground(Color.white);
+		setOpaque(true);
+		setID(id);
 		addPopupMenuItem("Connect",this.id,new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Connect Select");	
-				//System.out.println();
+				isConnectMODE = true;
+				setPartsNo();
 			}
 		});
 		addPopupMenuItem("Delete",this.id,new ActionListener(){
@@ -43,16 +52,22 @@ public class DragLabel extends JLabel implements MouseListener{
 				System.out.println("Value Select");				
 			}
 		});
-		setHorizontalAlignment(CENTER);
-		setVerticalAlignment(CENTER);
-		setSize(100,50);
-		setBorder(new LineBorder(Color.black,2));
-		setBackground(Color.white);
-		setOpaque(true);
 		add(pop);
-		addMouseListener(this);
-		
+		addMouseListener(this);		
 		new DragSource().createDefaultDragGestureRecognizer(this, dragAction,dgl);
+	}
+	public void setPartsNo(){
+			DrawManage.select_parts=Integer.parseInt(getName());		
+	}
+	private void connect_line(){
+		if(Integer.parseInt(getName()) != DrawManage.select_parts){
+			//接続情報を格納
+			
+			//Lineを描画する
+			
+			
+		}
+		isConnectMODE = false;
 	}
 	private MenuItem addPopupMenuItem(String name,int id,ActionListener a){
 		MenuItem item = new MenuItem(name);
@@ -79,7 +94,6 @@ public class DragLabel extends JLabel implements MouseListener{
 	}
 	private DragGestureListener dgl = new DragGestureListener(){
 		public void dragGestureRecognized(DragGestureEvent e){
-			//DragLabelベースからovs主体に変更が必要
 			String text;
 			if(getUID() == 0){
 				text = "F"+String.valueOf(getID());				
@@ -129,10 +143,13 @@ public class DragLabel extends JLabel implements MouseListener{
 	};
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-		System.out.println("Clicked");
-		pop.show(this,e.getX(),e.getY());
-
+		//クリックしたラベルのコンポーネント名を取得
+		if(isConnectMODE == true){
+			connect_line();
+			
+		}else{
+			pop.show(this,e.getX(),e.getY());
+		}
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {

@@ -23,9 +23,9 @@ public class PartsData {
 	}
 	public Menu_Icon getMenubyUID(int ids){
 		Menu_Icon val = new Menu_Icon();
-		for(int i = 0 ; i < DropPanel.partsum+1 ; i++){
-			if(DropPanel.ovs[i].id == ids){
-				val = getMenu(DropPanel.ovs[i].partsid);
+		for(int i = 0 ; i < DrawManage.partsum ; i++){
+			if(DrawManage.drawparts[i].id == ids){
+				val = getMenu(DrawManage.drawparts[i].partsid);
 			}
 		}
 		return val;
